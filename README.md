@@ -4,11 +4,11 @@ This repo contains the BenDFM and BenDFM-U datasets, as well as detailed dataset
 # Publications
 
 Please cite the paper below if you use the BenDFM dataset in your research.
-``
+````
 @article{ballegeerXXXXbendfm,
   title={XXX},
   author={Ballegeer, Matteo and Benoit, Dries F},
   journal={XXX},
   year={XXX}
 }
-``
+````
