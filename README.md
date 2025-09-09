@@ -1,6 +1,9 @@
+The dataset will be added to this repository upon publication. 
+For now, example files from the dataset can be found under the ``examples`` folder.
+
 # BenDFM dataset
 
-The BenDFM dataset contains geometrically varied sheet metal bending designs derived from parametric CAD modelling in PythonOCC. The dataset provides a valuable source for Design For Manufacturing (DFM) using deep learning, and contains a rich set of labels and representations (3D vs unfoldedn sequence information) that allow it to be used for other related tasks.
+The BenDFM dataset contains geometrically varied sheet metal bending designs derived from parametric CAD modelling in PythonOCC. The dataset provides a valuable source for Design For Manufacturing (DFM) using deep learning, and contains a rich set of labels and representations (3D vs unfolded sequence information) that allow it to be used for other related tasks.
 Benchmarks show that current state-of-the-art techniques are not able to solve the problems present in the dataset, encouraging research on better descriptors of global structural information in CAD designs.
 This repo contains the BenDFM and BenDFM-U datasets, as well as detailed dataset characteristics and instructions on how to interpret its files.
 
