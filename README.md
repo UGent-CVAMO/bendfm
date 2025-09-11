@@ -6,11 +6,13 @@ The dataset provides geometrically diverse parts, their unfolded representations
 
 The dataset is split into two main subsets: **BenDFM** and **BenDFM-U**, each targeting a specific manufacturability task.
 
+
+``example_files`` contains a set of example files from the dataset, which will be released upon publication.
 ---
 
 ## Dataset Description
 
-The full dataset comprises 16,000 unique 3D bent part geometries in STEP format.
+The full dataset comprises 18,000 unique 3D bent part geometries in STEP format.
 
 ### BenDFM Subset
 This is the primary subset, designed around the **tooling collision** prediction task (configurational feasibility).
@@ -21,7 +23,7 @@ This is the primary subset, designed around the **tooling collision** prediction
 
 ### BenDFM-U Subset
 This subset targets the **unfolding overlap** prediction task (geometric feasibility).
-- **Size**: 2,000 parts.
+- **Size**: 4,000 parts.
 - **Bend Counts**: 7 to 10 bends.
 - **Balancing**: This subset is balanced with a 50/50 split between parts that have unfolding overlaps and those that do not, stratified by bend count.
 
