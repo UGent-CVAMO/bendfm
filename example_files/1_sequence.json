@@ -1,0 +1,49 @@
+[
+    {
+        "base_length": 262.2540776164472,
+        "base_width": 156.26334683879958,
+        "part_thickness": 3.1335491993384075
+    },
+    {
+        "face_name": "base",
+        "edge_name": 1,
+        "full_width": 156.26334683879958,
+        "width_ratio": 0.51,
+        "edge_width": 79.69430688778779,
+        "bend_angle": 90.0,
+        "bend_radius": 3.32,
+        "bend_height": 168.0,
+        "orientation": "down",
+        "flange_type": "rectangular",
+        "rect_ratio": null,
+        "side": null,
+        "symmetric_to_last": false,
+        "distance_last_bend": 0,
+        "punch_rotation": 0,
+        "flip": false,
+        "collision_self": false,
+        "collision_punch": false,
+        "collision_die": false
+    },
+    {
+        "face_name": "base",
+        "edge_name": 2,
+        "full_width": 262.2540776164472,
+        "width_ratio": 1,
+        "edge_width": 262.2540776164472,
+        "bend_angle": 30.0,
+        "bend_radius": 3.45,
+        "bend_height": 139.0,
+        "orientation": "up",
+        "flange_type": "slanted",
+        "rect_ratio": 0.7,
+        "side": "left",
+        "symmetric_to_last": false,
+        "distance_last_bend": 155.3619605566256,
+        "punch_rotation": 135.0,
+        "flip": true,
+        "collision_self": false,
+        "collision_punch": false,
+        "collision_die": true
+    }
+]
