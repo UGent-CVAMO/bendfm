@@ -1,6 +1,6 @@
 # BenDFM: A Synthetic Dataset for Manufacturability Assessment in Sheet Metal Bending
 <p align="center">
-  <img src="docs/assets/bendfm_teaser.png" alt="BenDFM Dataset Preview" width="600"/>
+  <img src="docs/assets/bendfm_preview.png" alt="BenDFM Dataset Preview" width="600"/>
 </p>
 
 This repository contains the **BenDFM** dataset, a large-scale, synthetic dataset of sheet metal parts designed for data-driven Design for Manufacturing (DFM) research. The dataset is introduced in the paper: *BenDFM: A data-driven framework and synthetic dataset for assessing manufacturability in sheet metal bending*, **and its full content will be released upon publication.**
