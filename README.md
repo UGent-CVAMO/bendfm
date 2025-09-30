@@ -49,12 +49,12 @@ Each part (identified by `identifier` 0–19999) contains:
 - `identifier_unfolded.stp`: 2D unfolded CAD model.
 - `identifier_sequence.json`: Base plate parameters and ordered bend sequence.
 - `identifier_labels.json`: Detailed manufacturability and descriptive labels.
-
-The `examples` folder contains the first 5 designs from the training set.
+You can find sample files in the [`example_files`](example_files/) folder, which contains the first 5 designs from the training set. 
+The full dataset will be released upon publication.
 
 ---
 
-### Label Table (`identifier_labels.json`)
+### Part label metadata (`identifier_labels.json`)
 
 | Label Key                | Type    | Description                                                        |
 |--------------------------|---------|--------------------------------------------------------------------|
@@ -84,7 +84,7 @@ The `examples` folder contains the first 5 designs from the training set.
 
 ---
 
-### Sequence Table (`identifier_sequence.json`)
+### Bend-per-bend metadata (`identifier_sequence.json`)
 
 | Field Name         | Type    | Description                                                        |
 |--------------------|---------|--------------------------------------------------------------------|
@@ -111,30 +111,13 @@ The `examples` folder contains the first 5 designs from the training set.
 | collision_punch    | bool    | True if punch collision occurs                                      |
 | collision_die      | bool    | True if die collision occurs                                        |
 
----
-
-## Label Categories
-
-**Feasibility Labels:**
-
-- **y_tooling_collision**: Binary flag for any bend colliding with punch/die.
-- **y_unfolding_collision**: Binary flag for self-intersections in unfolded geometry.
-- **Per-Bend Collisions**: Detailed flags for each bend.
-
-**Complexity Labels:**
-
-- **Configuration-Dependent**: Number of flips, total punch rotations, total bend travel distance.
-- **Configuration-Independent**: Part mass, 3D and unfolded bounding box volumes, number of symmetric bend pairs, etc.
-
----
-
 ## Publications
 
 Please cite if you use BenDFM:
 
 ```bibtex
 @article{ballegeer2025bendfm,
-  title={BenDFM: A data-driven framework and synthetic dataset for assessing manufacturability in sheet metal bending},
+  title={BenDFM: A data-driven framework and synthetic dataset for manufacturability assessment in sheet metal bending},
   author={Ballegeer, Matteo and Benoit, Dries F},
   journal={xxx},
   year={2025}
@@ -142,7 +125,6 @@ Please cite if you use BenDFM:
 ```
 
 ## Contact
-For questions or collaboration, please contact the authors via the following email: `matteo.ballegeer@ugent.be`
+For questions or collaboration, please contact the authors via email: [matteo.ballegeer@ugent.be](mailto:matteo.ballegeer@ugent.be)
 
-## License
-See `LICENSE` for terms of use.
+See [`LICENSE`](LICENSE) for terms of use.
