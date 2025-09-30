@@ -1,63 +1,60 @@
 # BenDFM: A Synthetic Dataset for Manufacturability Assessment in Sheet Metal Bending
-<img src="imgs/bendfm_preview.png" alt="BenDFM Dataset Preview" style="display:block; margin:auto; width:100%; max-width:900px;"/>
+
+<img src="docs/images/bendfm_preview.png" alt="BenDFM Dataset Preview" style="display:block; margin:auto; width:100%; max-width:900px;"/>
 
 <p align="center">
   <span style="font-size:1.5em;"><u><strong>Full dataset release will follow publication.</strong></u></span>
 </p>
 
-This repository contains the **BenDFM** dataset, a large-scale, synthetic dataset of sheet metal parts designed for data-driven Design for Manufacturing (DFM) research. 
-The dataset is introduced in the paper: *BenDFM: A data-driven framework and synthetic dataset for manufacturability assessment in sheet metal bending* and provides geometrically diverse sheet metal bending parts, their unfolded representations, rich metadata, and a comprehensive set of manufacturability labels. These labels are structured according to a novel taxonomy, spanning geometric and configurational feasibility and complexity, making the dataset suitable for a wide range of tasks from binary feasibility classification to complexity regressions in sheet metal bending DFM.
+This repository hosts **BenDFM**, a large-scale synthetic dataset of sheet metal parts designed for data-driven Design for Manufacturing (DFM) research. 
 
-The dataset is provided as two subsets: **BenDFM** and **BenDFM-U**, each balanced towards a specific manufacturability task.
+The dataset is introduced in the paper: *BenDFM: A data-driven framework and synthetic dataset for manufacturability assessment in sheet metal bending* and provides:
+
+- Geometrically diverse 3D sheet metal bending parts and their unfolded representations.
+- Rich part-level metadata.
+- Comprehensive manufacturability labels structured according to a novel taxonomy, spanning both geometric and configurational feasibility and complexity.
+
+BenDFM enables a wide range of tasks, including binary feasibility classification, regression of manufacturing complexity, and analysis of process constraints.
+
+The dataset is split into two subsets: **BenDFM** and **BenDFM-U**, each balanced to support specific manufacturability tasks.
 
 ---
 
-## Dataset Description
+## Dataset Overview
 
-The full dataset comprises 20,000 unique 3D bent part geometries in STEP format.
-
-### BenDFM Subset
-This is the primary subset, designed around the **tooling collision** prediction task (configurational feasibility).
-- **Size**: 14,000 parts.
-- **Bend Counts**: 2 to 8 bends (2,000 parts for each bend count).
-- **Tooling Collision Rate**: 50.0%
-- **Constraint**: All parts in this subset are guaranteed to be free of unfolding overlaps.
-
-### BenDFM-U Subset
-This subset targets the **unfolding overlap** prediction task (geometric feasibility).
-- **Size**: 6,000 parts.
-- **Bend Counts**: 7 to 10 bends.
-- **Balancing**: This subset is balanced with a 50/50 split between parts that have unfolding overlaps and those that do not, stratified by bend count.
-- **Unfolding Overlap Rate**: 50.0%
+- **Total Parts**: 20,000 unique 3D bent part geometries in STEP format.
+- **Subset 1 — BenDFM**: 14,000 parts with 2–8 bends, tooling collisions balanced at 50%, all parts guaranteed free of unfolding overlaps.
+- **Subset 2 — BenDFM-U**: 6,000 parts with 7–10 bends, balanced 50/50 for unfolding overlaps.
 
 ---
 
 ## Dataset Characteristics & Generation
 
-The dataset was generated to reflect common industrial practices and ensure a challenging benchmark for learning models.
+Key parameters used to generate parts:
 
-**Key Generation Parameters:**
-- **Base Sheet Dimensions**: Length and width uniformly sampled from 150 mm to 300 mm.
-- **Sheet Thickness**: Uniformly sampled from 2.0 mm to 6.0 mm.
-- **Bend Angles**: Drawn from $\{45^\circ, 60^\circ, 90^\circ, 120^\circ, 135^\circ\}$, with a bias toward $90^\circ$.
-- **Flange Heights**: Sampled between 75 mm and the maximum base sheet dimension.
-- **Bend Radii**: Sampled proportionally to sheet thickness (1.0-1.5x).
-- **Realism Features**: Includes automatic insertion of bend reliefs, flange geometry variants, and a symmetry bias.
+- **Base Sheet Dimensions**: 150–300 mm (length & width, uniform sampling)
+- **Sheet Thickness**: 2–6 mm
+- **Bend Angles**: {45°, 60°, 90°, 120°, 135°}, biased toward 90°
+- **Flange Heights**: 75 mm to maximum sheet dimension
+- **Bend Radii**: 1.0–1.5 × sheet thickness
+- **Realism Features**: Automatic bend reliefs, flange geometry variants, symmetry bias
 
 ---
 
 ## File Structure
 
-For each design, identified by its `identifier` (a number between 0 and 19999), the dataset provides 4 files:
+Each part (identified by `identifier` 0–19999) contains:
 
-- `identifier.stp`: The 3D CAD file of the bent part in STEP format.
-- `identifier_unfolded.stp`: The CAD file of the 2D unfolded representation in STEP format.
-- `identifier_sequence.json`: A JSON file containing the parameters of the base plate and the full, ordered bend sequence.
-- `identifier_labels.json`: A JSON file containing a rich set labels, both descriptive and related to different facets of manufacturability
+- `identifier.stp`: 3D CAD model of the bent part.
+- `identifier_unfolded.stp`: 2D unfolded CAD model.
+- `identifier_sequence.json`: Base plate parameters and ordered bend sequence.
+- `identifier_labels.json`: Detailed manufacturability and descriptive labels.
 
 The `examples` folder contains the first 5 designs from the training set.
 
-### Full Label Table (`identifier_labels.json`)
+---
+
+### Label Table (`identifier_labels.json`)
 
 | Label Key                | Type    | Description                                                        |
 |--------------------------|---------|--------------------------------------------------------------------|
@@ -69,11 +66,11 @@ The `examples` folder contains the first 5 designs from the training set.
 | sheet_flips              | int     | Number of times the sheet is flipped during manufacturing          |
 | total_punch_rotations    | float   | Total punch rotation angle (degrees)                               |
 | total_bend_distances     | float   | Total travel distance (mm) for all bends                           |
-| part_volume_3d           | float   | Volume of the part (cm³)                                           |
-| bbox_volume_3d           | float   | Volume of 3D bounding box (cm³)                                    |
+| part_volume_3d           | float   | Part volume (cm³)                                                  |
+| bbox_volume_3d           | float   | 3D bounding box volume (cm³)                                       |
 | part_mass_kg             | float   | Mass of the part (kg)                                              |
 | bbox_area_unfolded       | float   | Area of unfolded bounding box (cm²)                                |
-| sheet_thickness          | float   | Thickness of the sheet (mm)                                        |
+| sheet_thickness          | float   | Sheet thickness (mm)                                               |
 | num_rounded_flanges      | int     | Number of rounded flanges                                          |
 | num_slanted_flanges      | int     | Number of slanted flanges                                          |
 | min_bend_height          | float   | Minimum bend height (mm)                                           |
@@ -87,53 +84,53 @@ The `examples` folder contains the first 5 designs from the training set.
 
 ---
 
-### Full Sequence Table (`*identifier_sequence.json`)
+### Sequence Table (`identifier_sequence.json`)
 
 | Field Name         | Type    | Description                                                        |
 |--------------------|---------|--------------------------------------------------------------------|
-| base_length        | float   | Length of the base plate (mm)                                      |
-| base_width         | float   | Width of the base plate (mm)                                       |
-| part_thickness     | float   | Thickness of the part (mm)                                         |
-| face_name          | str     | Name of the face where the bend is applied                         |
-| edge_name          | int/str | Identifier for the edge being bent                                 |
-| full_width         | float   | Full width of the face (mm)                                        |
-| width_ratio        | float   | Ratio of edge width to full width                                  |
-| edge_width         | float   | Width of the edge being bent (mm)                                  |
+| base_length        | float   | Base plate length (mm)                                             |
+| base_width         | float   | Base plate width (mm)                                              |
+| part_thickness     | float   | Part thickness (mm)                                                |
+| face_name          | str     | Face where bend is applied                                         |
+| edge_name          | int/str | Identifier of edge being bent                                       |
+| full_width         | float   | Full face width (mm)                                               |
+| width_ratio        | float   | Edge width / full width                                             |
+| edge_width         | float   | Edge width being bent (mm)                                         |
 | bend_angle         | float   | Bend angle (degrees)                                               |
 | bend_radius        | float   | Bend radius (mm)                                                   |
-| bend_height        | float   | Height of the bend (mm)                                            |
-| orientation        | str     | Bend orientation ('up' or 'down')                                  |
-| flange_type        | str     | Type of flange ('rectangular', 'rounded', 'slanted')               |
-| rect_ratio         | float   | Ratio for rectangular flange geometry                              |
-| side               | str     | Side of the flange (e.g., 'right'), if applicable                  |
-| symmetric_to_last  | bool    | True if bend was constructed symmetric to previous bend            |
+| bend_height        | float   | Bend height (mm)                                                   |
+| orientation        | str     | 'up' or 'down'                                                    |
+| flange_type        | str     | 'rectangular', 'rounded', or 'slanted'                             |
+| rect_ratio         | float   | Rectangular flange ratio                                           |
+| side               | str     | Side of flange (if applicable)                                     |
+| symmetric_to_last  | bool    | True if symmetric to previous bend                                  |
 | distance_last_bend | float   | Distance to previous bend (mm)                                     |
-| punch_rotation     | float   | Punch rotation angle (degrees)                                     |
-| flip               | bool    | True if part is flipped for this bend                              |
-| collision_self     | bool    | True if bend causes self-collision                                 |
-| collision_punch    | bool    | True if bend causes punch collision                                |
-| collision_die      | bool    | True if bend causes die collision                                  |
+| punch_rotation     | float   | Punch rotation (degrees)                                           |
+| flip               | bool    | True if sheet flipped for this bend                                 |
+| collision_self     | bool    | True if self-collision occurs                                       |
+| collision_punch    | bool    | True if punch collision occurs                                      |
+| collision_die      | bool    | True if die collision occurs                                        |
 
-## Label Descriptions
+---
 
-The dataset includes a wide variety of labels for both classification and regression tasks, spanning all four quadrants of the manufacturability taxonomy proposed in the paper, as well as additional relevant metadata on the part-level.
+## Label Categories
 
 **Feasibility Labels:**
-- **y_tooling_collision**: Binary label indicating if any bend collides with the punch or die.
-- **y_unfolding_collision**: Binary label indicating if the unfolded pattern of the design self-intersects.
-- **Per-Bend Collisions**: Granular flags for each individual bend.
+
+- **y_tooling_collision**: Binary flag for any bend colliding with punch/die.
+- **y_unfolding_collision**: Binary flag for self-intersections in unfolded geometry.
+- **Per-Bend Collisions**: Detailed flags for each bend.
 
 **Complexity Labels:**
-- **Configuration-Dependent**: Number of part flips, total reorientation angle, and total travel distance.
-- **Configuration-Independent**: Part mass, bounding box volume (3D and unfolded), number of symmetric bend pairs, etc.
 
-*_[Placeholder: A detailed table describing all available labels, their data types, and descriptions will be added here.]_*
+- **Configuration-Dependent**: Number of flips, total punch rotations, total bend travel distance.
+- **Configuration-Independent**: Part mass, 3D and unfolded bounding box volumes, number of symmetric bend pairs, etc.
 
 ---
 
 ## Publications
 
-Please cite our paper if you use the BenDFM dataset or its accompanying in your research:
+Please cite if you use BenDFM:
 
 ```bibtex
 @article{ballegeer2025bendfm,
@@ -143,3 +140,9 @@ Please cite our paper if you use the BenDFM dataset or its accompanying in your 
   year={2025}
 }
 ```
+
+## Contact
+For questions or collaboration, please contact the authors via the following email: `matteo.ballegeer@ugent.be`
+
+## License
+See `LICENSE` for terms of use.
