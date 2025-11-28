@@ -1,0 +1,32 @@
+# Python cache/artifacts
+__pycache__/
+*.py[cod]
+*.so
+
+# Environment files
+.env
+.venv/
+venv/
+
+# Jupyter / editor
+.ipynb_checkpoints/
+.DS_Store
+
+# Training/runtime outputs
+wandb/
+runs/
+checkpoints/
+logs/
+outputs/
+results/
+
+# Compiled extensions / build artifacts
+*.egg-info/
+build/
+dist/
+
+# Avoid nested VCS metadata from vendored dependencies
+**/.git/
+**/.gitmodules
+
+/data/
