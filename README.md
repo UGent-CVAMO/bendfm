@@ -1,4 +1,4 @@
-# BenDFM: A Synthetic Dataset for Manufacturability Assessment in Sheet Metal Bending
+# BenDFM: A Synthetic Dataset for Manufacturability Assessment in Sheet Metal Bending (TO BE RELEASED)
 
 <img src="docs/images/bendfm_preview.png" alt="BenDFM Dataset Preview" style="display:block; margin:auto; width:100%; max-width:900px;"/>
 
