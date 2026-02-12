@@ -95,13 +95,14 @@ BenDFM/
 │   │   └── graph_dataset.py     # Graph dataset loader (used by UV-Net)
 │   ├── models/
 │   │   ├── uvnet/               # UV-Net model
-│   │   └── PointNeXt/           # PointNeXt model
+│   │   └── openpoints/          # OpenPoints framework (PointNeXt) - optional
 │   └── train/
-│       ├── uvnet.py             # UV-Net training script
-│       └── pointnext.py         # PointNeXt training script
+│       ├── uvnet.py             # UV-Net training script (recommended)
+│       └── pointnext.py         # PointNeXt training script (requires openpoints setup)
 ├── example_files/               # Sample parts (first 5 designs)
 ├── docs/                        # Documentation and figures
 ├── environment.yml              # Conda environment specification
+├── install.sh                   # Setup script for PointNeXt (optional)
 ├── LICENSE
 └── README.md
 ```
@@ -118,20 +119,31 @@ BenDFM/
 
 ### Step 1: Download the dataset
 
-Download BenDFM and/or BenDFM-U and place under `data/`:
+Download BenDFM and/or BenDFM-U from [**[link to be added]**] and extract under the `data/` folder:
 
 ```
 data/bendfm/{train,val,test}/   # BenDFM subset (14,000 parts, 2-8 bends)
 data/bendfm_u/{train,val,test}/ # BenDFM-U subset (6,000 parts, 7-10 bends)
 ```
 
-Each split directory should contain raw STEP files (`.stp`, `_unfolded.stp`) and JSON metadata (`_labels.json`, `_sequence.json`).
+Each split directory contains:
+- Raw STEP files (`.stp`, `_unfolded.stp`)
+- JSON metadata (`_labels.json`, `_sequence.json`)
+- Pre-generated input representations:
+  - `graphs/`: UV-grid DGL graphs for UV-Net
+  - `pcs/`: Point clouds for PointNeXt
 
 **The dataset will be released upon publication. Sample files are available in [`example_files`](example_files/).**
 
-### Step 2: Generate input representations
+### Step 2: Input representations (optional)
 
-**For UV-Net** — Generate UV-grid DGL graphs (creates `graphs/` subdirectory):
+The downloaded dataset already includes pre-generated input representations:
+- **`graphs/`**: UV-grid DGL graphs for UV-Net
+- **`pcs/`**: Point clouds for PointNeXt
+
+These can be used directly for training. However, if you want to regenerate them, use the scripts below:
+
+**For UV-Net** — Regenerate UV-grid DGL graphs:
 
 ```bash
 # BenDFM
@@ -145,7 +157,7 @@ python benchmark/input_transformation/features.py --input_dir data/bendfm_u/val 
 python benchmark/input_transformation/features.py --input_dir data/bendfm_u/test  --output_dir data/bendfm_u/test/graphs
 ```
 
-**For PointNeXt** — Generate point clouds (creates `pcs/` subdirectory):
+**For PointNeXt** — Regenerate point clouds:
 
 ```bash
 # BenDFM
@@ -172,13 +184,23 @@ conda env create -f environment.yml
 conda activate bendfm
 ```
 
+### OpenPoints (for PointNeXt - Optional)
+
+If you plan to use **PointNeXt**, initialize the OpenPoints submodule:
+
+```bash
+git submodule update --init --recursive
+```
+
+Then follow the [OpenPoints installation guide](https://github.com/guochengqian/openpoints#installation) for any additional setup.
+
 ---
 
 ## Benchmark
 
-### UV-Net
+### UV-Net (Recommended)
 
-**No additional setup needed.** Train directly with:
+**No additional setup required.** Train directly with:
 
 ```bash
 # Regression task (manufacturability complexity)
@@ -197,20 +219,11 @@ Results are saved to `results/uvnet/{dataset}/{label_key}/`.
 
 ---
 
-### PointNeXt
+### PointNeXt (Optional)
 
-**Setup** — Install CUDA extensions (optional but recommended for speed):
+To use PointNeXt, you need to set up the [OpenPoints](https://github.com/guochengqian/openpoints) framework. Follow the [OpenPoints installation guide](https://github.com/guochengqian/openpoints#installation) and ensure its requirements are met.
 
-```bash
-bash install.sh
-```
-
-This script automatically:
-- Updates git submodules (PointNeXt/openpoints)
-- Detects your GPU architecture
-- Builds optimized CUDA kernels
-
-**Train** — Run training scripts:
+Once configured, train with:
 
 ```bash
 # Regression task

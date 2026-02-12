@@ -29,9 +29,9 @@ from sklearn.metrics import (
 )
 from tqdm import tqdm
 
-# Add the PointNeXt model directory to Python path
-_pointnext_path = pathlib.Path(__file__).parent.parent / "models" / "PointNeXt"
-sys.path.insert(0, str(_pointnext_path))
+# Add the openpoints model directory to Python path
+_openpoints_path = pathlib.Path(__file__).parent.parent / "models" / "openpoints"
+sys.path.insert(0, str(_openpoints_path))
 
 warnings.simplefilter(action="ignore", category=FutureWarning)
 
@@ -102,8 +102,8 @@ def evaluate(model, loader, device, criterion, regression, mean_label=0.5):
 
     with torch.no_grad():
         for xyz, feats, labels in loader:
-            xyz = xyz.to(device).float().transpose(1, 2)
-            feats = feats.to(device).float().transpose(1, 2)
+            xyz = xyz.to(device).float().contiguous()  # Shape: (batch, 3, 1024)
+            feats = feats.to(device).float().contiguous()  # Shape: (batch, 3, 1024)
             labels = labels.to(device).float()
             logits = model(xyz, feats).squeeze()
             loss = criterion(logits, labels)
@@ -259,9 +259,9 @@ def main(args, SEED=42):
         all_preds, all_labels = [], []
 
         loop = tqdm(train_loader, desc=f"Epoch {epoch+1}/{EPOCHS}")
-        for xyz, feats, label in loop:
-            xyz = xyz.to(device).float().transpose(1, 2)
-            feats = feats.to(device).float().transpose(1, 2)
+        for batch_idx, (xyz, feats, label) in enumerate(loop):
+            xyz = xyz.to(device).float().contiguous()  # Shape: (batch, 3, 1024)
+            feats = feats.to(device).float().contiguous()  # Shape: (batch, 3, 1024)
             label = label.to(device).float()
             optimizer.zero_grad()
             preds = model(xyz, feats).squeeze()

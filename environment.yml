@@ -1,32 +1,29 @@
 name: bendfm
 channels:
-  - dglteam/label/th24_cu121
   - conda-forge
-  - lambouj
+  - dglteam/label/th24_cu121
   - defaults
 
 dependencies:
   - python=3.9
-  - pip
   - numpy
   - scipy
   - networkx
-  - scikit-learn
+  - scikit-learn==1.0.2
   - tqdm
+  - dgl
+  - pip
 
-  # Deep Graph Library
-  - dglteam/label/th24_cu121::dgl
-
-  # PyTorch Lightning & metrics
-  - conda-forge::torchmetrics
-
-  # CAD kernel (for preprocessing only)
-  - conda-forge::pythonocc-core=7.5
-  - lambouj::occwl
-
-  # Point cloud I/O (for preprocessing only)
   - pip:
-      - torch==2.4
-      - torchvision
+      - torch==2.5.1
+      - torchvision==0.20.1
       - lightning>=2.0
       - open3d
+      - termcolor==1.1.0
+      - multimethod==1.7
+      - shortuuid
+      - h5py==3.6.0
+      - plyfile
+      - tensorboard
+      - pyyaml==6.0
+      - easydict==1.9
