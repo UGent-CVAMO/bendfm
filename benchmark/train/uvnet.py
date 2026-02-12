@@ -2,6 +2,7 @@
 
 Usage (run from repository root):
     python benchmark/train/uvnet.py --data_dir data/bendfm --label_key bbox_area_unfolded --regression
+    python benchmark/train/uvnet.py --data_dir data/bendfm --label_key y_tool_collision
     python benchmark/train/uvnet.py --data_dir data/bendfm_u --label_key y_unfolding_collision
 """
 
@@ -157,9 +158,8 @@ if __name__ == "__main__":
                         help="Path to dataset root (e.g. data/bendfm or data/bendfm_u).")
     parser.add_argument("--label_key", type=str, default="bbox_area_unfolded",
                         help="Label key from *_labels.json to predict.")
-    parser.add_argument("--regression", action="store_true", default=True,
-                        help="Regression task (default). Use --no-regression for classification.")
-    parser.add_argument("--no-regression", dest="regression", action="store_false")
+    parser.add_argument("--regression", action="store_true", default=False,
+                        help="Regression task. Default is classification.")
     parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--lr", type=float, default=0.0005)
     parser.add_argument("--patience", type=int, default=15)

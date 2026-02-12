@@ -109,9 +109,13 @@ BenDFM/
 
 ---
 
-## Getting Started
+## Quick Start
 
-> **All commands should be run from the repository root.**
+1. **Create environment**: `conda env create -f environment.yml && conda activate bendfm`
+2. **Download dataset**: Extract to `data/bendfm/` or `data/bendfm_u/`
+3. **Train UV-Net**: `python benchmark/train/uvnet.py --data_dir data/bendfm --label_key y_tool_collision`
+
+> All commands should be run from the repository root.
 
 ---
 
@@ -198,7 +202,7 @@ Then follow the [OpenPoints installation guide](https://github.com/guochengqian/
 
 ## Benchmark
 
-### UV-Net (Recommended)
+### UV-Net (Recommended) — Graph-based
 
 **No additional setup required.** Train directly with:
 
@@ -207,10 +211,10 @@ Then follow the [OpenPoints installation guide](https://github.com/guochengqian/
 python benchmark/train/uvnet.py --data_dir data/bendfm --label_key bbox_area_unfolded --regression
 
 # Binary classification (tool collision feasibility)
-python benchmark/train/uvnet.py --data_dir data/bendfm --label_key y_tool_collision --no-regression
+python benchmark/train/uvnet.py --data_dir data/bendfm --label_key y_tool_collision
 
 # Binary classification (unfolding collision feasibility)
-python benchmark/train/uvnet.py --data_dir data/bendfm_u --label_key y_unfolding_collision --no-regression
+python benchmark/train/uvnet.py --data_dir data/bendfm_u --label_key y_unfolding_collision
 ```
 
 Run `python benchmark/train/uvnet.py --help` for options (batch size, learning rate, epochs, patience, seed, etc.).
@@ -219,9 +223,12 @@ Results are saved to `results/uvnet/{dataset}/{label_key}/`.
 
 ---
 
-### PointNeXt (Optional)
+### PointNeXt (Optional) — Point Cloud-based
 
-To use PointNeXt, you need to set up the [OpenPoints](https://github.com/guochengqian/openpoints) framework. Follow the [OpenPoints installation guide](https://github.com/guochengqian/openpoints#installation) and ensure its requirements are met.
+**Requires additional setup.** Point cloud representation; requires [OpenPoints](https://github.com/guochengqian/openpoints) framework. To use:
+
+1. Initialize submodule: `git submodule update --init --recursive`
+2. Follow [OpenPoints installation](https://github.com/guochengqian/openpoints#installation)
 
 Once configured, train with:
 
@@ -230,10 +237,10 @@ Once configured, train with:
 python benchmark/train/pointnext.py --data_dir data/bendfm --label_key bbox_area_unfolded --regression
 
 # Binary classification (tool collision)
-python benchmark/train/pointnext.py --data_dir data/bendfm --label_key y_tool_collision --no-regression
+python benchmark/train/pointnext.py --data_dir data/bendfm --label_key y_tool_collision
 
 # Binary classification (unfolding collision)
-python benchmark/train/pointnext.py --data_dir data/bendfm_u --label_key y_unfolding_collision --no-regression
+python benchmark/train/pointnext.py --data_dir data/bendfm_u --label_key y_unfolding_collision
 ```
 
 Run `python benchmark/train/pointnext.py --help` for full options.
