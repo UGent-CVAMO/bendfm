@@ -1,14 +1,14 @@
-# BenDFM: A Synthetic Dataset for Manufacturability Assessment in Sheet Metal Bending (TO BE RELEASED)
+# BenDFM: A Synthetic Dataset for Manufacturability Assessment in Sheet Metal Bending
 
 <img src="docs/images/bendfm_preview.png" alt="BenDFM Dataset Preview" style="display:block; margin:auto; width:100%; max-width:900px;"/>
 
 <p align="center">
-  <span style="font-size:1.5em;"><u><strong>Full dataset will be released upon publication.</strong></u></span>
+  <span style="font-size:1.5em;"><u><strong><a href="https://zenodo.org/records/18622958">📊 Download BenDFM Dataset on Zenodo</a></strong></u></span>
 </p>
 
 This repository hosts **BenDFM**, a large-scale synthetic dataset of sheet metal parts designed for data-driven Design for Manufacturing (DFM) research. 
 
-The dataset is introduced in the paper: *BenDFM: A taxonomy and synthetic dataset for manufacturability assessment in sheet metal bending* and provides:
+The dataset is introduced in the paper: *BenDFM: A taxonomy and synthetic dataset for manufacturability assessment in sheet metal bending*, **accepted at the Journal of Intelligent Manufacturing**. This repository contains the analysis code and dataset structure; the full dataset is available on Zenodo.
 
 - Geometrically diverse 3D sheet metal bending parts and their unfolded representations.
 - Rich part-level metadata.
@@ -59,13 +59,21 @@ For an overview of the most important dataset characteristics, we refer to [`dat
 Please cite the following publication if you use BenDFM:
 
 ```bibtex
-@article{ballegeer2025bendfm,
-  title={BenDFM: A data-driven framework and synthetic dataset for manufacturability assessment in sheet metal bending},
-  author={Ballegeer, Matteo and Benoit, Dries F},
-  journal={xxx},
-  year={xxx}
+@article{ballegeer2026bendfm,
+      title={BenDFM: A taxonomy and synthetic CAD dataset for manufacturability assessment in sheet metal bending}, 
+      author={Matteo Ballegeer and Dries F. Benoit},
+      year={2026},
+      journal={Journal of Intelligent Manufacturing},
+      note={Accepted},
+      eprint={2603.13102},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2603.13102},
+      doi={10.48550/arXiv.2603.13102}
 }
 ```
+
+**Dataset**: [https://zenodo.org/records/18622958](https://zenodo.org/records/18622958)
 
 ---
 
@@ -123,7 +131,7 @@ BenDFM/
 
 ### Step 1: Download the dataset
 
-Download BenDFM and/or BenDFM-U from [**[link to be added]**] and extract under the `data/` folder:
+Download BenDFM and/or BenDFM-U from **[Zenodo](https://zenodo.org/records/18622958)** and extract under the `data/` folder:
 
 ```
 data/bendfm/{train,val,test}/   # BenDFM subset (14,000 parts, 2-8 bends)
@@ -137,7 +145,8 @@ Each split directory contains:
   - `graphs/`: UV-grid DGL graphs for UV-Net
   - `pcs/`: Point clouds for PointNeXt
 
-**The dataset will be released upon publication. Sample files are available in [`example_files`](example_files/).**
+**Full dataset**: Available on [Zenodo](https://zenodo.org/records/18622958)
+**Sample files**: First 5 parts available in [`example_files`](example_files/)
 
 ### Step 2: Input representations (optional)
 
