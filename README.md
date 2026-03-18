@@ -4,7 +4,7 @@
 
 This repository hosts **BenDFM**, a large-scale synthetic dataset of sheet metal parts designed for data-driven Design for Manufacturing (DFM) research. 
 
-The dataset is introduced in the paper: *BenDFM: A taxonomy and synthetic dataset for manufacturability assessment in sheet metal bending*, **accepted at the Journal of Intelligent Manufacturing**. This repository contains the analysis code and dataset structure; the full dataset is available on [https://zenodo.org/records/18622958](Zenodo).
+The dataset is introduced in the paper: *BenDFM: A taxonomy and synthetic dataset for manufacturability assessment in sheet metal bending*, **accepted at the Journal of Intelligent Manufacturing**. This repository contains the analysis code and dataset structure; the full dataset is available on [Zenodo](https://zenodo.org/records/18622958).
 
 - Geometrically diverse 3D sheet metal bending parts and their unfolded representations.
 - Rich part-level metadata.
